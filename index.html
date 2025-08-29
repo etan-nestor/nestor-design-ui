@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nestor Design UI - Button Demo</title>
+    <script type="module" crossorigin src="/src/main.tsx"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Configuration Tailwind custom */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 min-h-screen">
+    <div id="root"></div>
+    
+    <script>
+        // Configuration Tailwind personnalisée
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nestor: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                        success: {
+                            50: '#f0fdf4',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        },
+                        error: {
+                            50: '#fef2f2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                        },
+                        warning: {
+                            50: '#fffbeb',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        }
+                    },
+                    animation: {
+                        'bounce-subtle': 'bounceSubtle 0.6s ease-in-out',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        bounceSubtle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.3)' },
+                            '100%': { boxShadow: '0 0 30px rgba(14, 165, 233, 0.6)' },
+                        },
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(14, 165, 233, 0.5)',
+                        'neon-hover': '0 0 30px rgba(14, 165, 233, 0.7)',
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
