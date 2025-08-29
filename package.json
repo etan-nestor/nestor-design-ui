@@ -1,25 +1,42 @@
 {
-  "name": "@nestor-design/next",
-  "version": "1.0.0",
+  "name": "@nestor-design/ui",
+  "version": "1.0.1",
   "description": "Librairie de composants UI moderne avec Tailwind CSS",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/index.css",
+    "./tailwind": "./tailwind-preset.js"
+  },
   "files": [
     "dist",
     "tailwind-preset.js"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsup",
+    "build": "npm run clean && npm run build:lib && npm run build:css",
+    "build:lib": "tsup",
+    "build:css": "tailwindcss -i ./src/index.css -o ./dist/index.css --minify",
     "build:watch": "tsup --watch",
+    "clean": "rm -rf dist",
     "preview": "vite preview",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.17"
+    "react": ">=16.8.0 <21.0.0",
+    "react-dom": ">=16.8.0 <21.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/node": "^20.19.11",
@@ -28,10 +45,11 @@
     "@vitejs/plugin-react": "^5.0.2",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.0.0",
+    "tailwindcss": "^3.4.17",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2",
-    "vite": "^7.1.3"
+    "vite": "^7.1.3",
+    "terser": "^5.34.1"
   },
   "dependencies": {
     "clsx": "^2.1.0",
@@ -43,7 +61,8 @@
     "typescript",
     "tailwind",
     "ui-components",
-    "design-system"
+    "design-system",
+    "nextjs"
   ],
   "repository": {
     "type": "git",

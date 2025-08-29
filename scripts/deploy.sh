@@ -120,7 +120,7 @@ rm -f nestor-design-next-*.tgz
 
 log "🎉 Déploiement terminé avec succès!"
 log "🔗 Package: https://www.npmjs.com/package/@nestor-design/next"
-log "📖 Documentation: https://github.com/YOUR_USERNAME/nestor-design-ui#readme"
+log "📖 Documentation: https://github.com/etan-nestor/nestor-design-ui#readme"
 
 # Notifications optionnelles (décommentez si vous voulez)
 # log "📢 Notifications..."

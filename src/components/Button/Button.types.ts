@@ -86,40 +86,38 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
   
   // Interaction
   ripple?: boolean
-  haptic?: boolean
   
   // Accessibilité
   'aria-label'?: string
-  tooltip?: string
   
   // Style personnalisé
   className?: string
   style?: React.CSSProperties
   
-  // Événements
+  // Événements (corrections)
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-  onHover?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  onMouseEnter?: (event: React.MouseEvent<HTMLButtonElement>) => void
   onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void
   onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void
 }
 
 // Variantes de style prédéfinies
-export const BUTTON_VARIANTS = {
-  primary: 'bg-nestor-600 text-white hover:bg-nestor-700 focus:ring-nestor-500',
-  secondary: 'bg-neutral-200 text-neutral-900 hover:bg-neutral-300 focus:ring-neutral-500',
-  outline: 'border-2 border-nestor-600 text-nestor-600 hover:bg-nestor-600 hover:text-white focus:ring-nestor-500',
-  ghost: 'text-nestor-600 hover:bg-nestor-50 focus:ring-nestor-500',
-  link: 'text-nestor-600 underline-offset-4 hover:underline focus:ring-nestor-500',
-  destructive: 'bg-error-600 text-white hover:bg-error-700 focus:ring-error-500',
-  success: 'bg-success-600 text-white hover:bg-success-700 focus:ring-success-500',
-  warning: 'bg-warning-600 text-white hover:bg-warning-700 focus:ring-warning-500',
-  glass: 'glass text-white border-white/20 hover:bg-white/20 focus:ring-white/50',
-  neon: 'bg-nestor-600 text-white hover:shadow-neon-hover focus:shadow-neon',
-  gradient: 'bg-gradient-to-r from-nestor-600 to-purple-600 text-white hover:from-nestor-700 hover:to-purple-700',
+export const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
+  primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+  secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500',
+  outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500',
+  ghost: 'text-blue-600 hover:bg-blue-50 focus:ring-blue-500',
+  link: 'text-blue-600 underline-offset-4 hover:underline focus:ring-blue-500',
+  destructive: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
+  success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500',
+  warning: 'bg-yellow-600 text-white hover:bg-yellow-700 focus:ring-yellow-500',
+  glass: 'bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 focus:ring-white/50',
+  neon: 'bg-blue-600 text-white hover:shadow-[0_0_30px_rgba(59,130,246,0.7)] focus:shadow-[0_0_20px_rgba(59,130,246,0.5)]',
+  gradient: 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700',
 } as const
 
 // Tailles prédéfinies
-export const BUTTON_SIZES = {
+export const BUTTON_SIZES: Record<ButtonSize, string> = {
   xs: 'h-6 px-2 text-xs',
   sm: 'h-8 px-3 text-sm',
   md: 'h-10 px-4 text-sm',
@@ -131,7 +129,7 @@ export const BUTTON_SIZES = {
 } as const
 
 // Formes prédéfinies
-export const BUTTON_SHAPES = {
+export const BUTTON_SHAPES: Record<ButtonShape, string> = {
   default: 'rounded-md',
   rounded: 'rounded-lg',
   pill: 'rounded-full',
@@ -140,12 +138,12 @@ export const BUTTON_SHAPES = {
 } as const
 
 // Animations prédéfinies
-export const BUTTON_ANIMATIONS = {
+export const BUTTON_ANIMATIONS: Record<ButtonAnimation, string> = {
   none: '',
-  bounce: 'hover:animate-bounce-subtle',
-  pulse: 'hover:animate-pulse-slow',
-  scale: 'hover:scale-105 active:scale-95',
-  slide: 'hover:translate-y-[-2px]',
-  glow: 'hover:animate-glow',
-  shimmer: 'relative overflow-hidden hover:animate-shimmer',
+  bounce: 'hover:animate-bounce',
+  pulse: 'hover:animate-pulse',
+  scale: 'hover:scale-105 active:scale-95 transition-transform',
+  slide: 'hover:translate-y-[-2px] transition-transform',
+  glow: 'transition-shadow duration-300',
+  shimmer: 'relative overflow-hidden',
 } as const

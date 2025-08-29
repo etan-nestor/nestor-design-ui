@@ -12,17 +12,6 @@ import {
 
 /**
  * Composant Button ultra-flexible et personnalisable
- * 
- * Features:
- * - Multiple variants (primary, secondary, outline, glass, neon, etc.)
- * - Différentes tailles et formes
- * - Support des icônes (gauche, droite, seule)
- * - Animations et effets visuels
- * - Loading state avec spinner
- * - Effet ripple au clic
- * - Glassmorphism et effets neon
- * - Accessibilité complète
- * - TypeScript strict
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   // Contenu
@@ -61,7 +50,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   
   // Événements
   onClick,
-  onHover,
+  onMouseEnter,
   onFocus,
   onBlur,
   
@@ -144,7 +133,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     glass ? 'glass' : BUTTON_VARIANTS[variant],
     
     // Taille
-    isIconOnly && size.startsWith('icon') 
+    isIconOnly && size.includes('icon') 
       ? BUTTON_SIZES[size as keyof typeof BUTTON_SIZES]
       : isIconOnly
       ? BUTTON_SIZES[`icon-${size}` as keyof typeof BUTTON_SIZES] || BUTTON_SIZES['icon-md']
@@ -172,18 +161,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     
     const { icon: IconComponent, size: iconSize = 16, className: iconClassName } = iconConfig
     
+    // Si c'est un composant React valide
     if (React.isValidElement(IconComponent)) {
       return React.cloneElement(IconComponent as React.ReactElement, {
-        ...('className' in (IconComponent.props || {}) ? { className: cn('flex-shrink-0', iconClassName) } : {}),
-        ...('size' in (IconComponent.props || {}) ? { size: iconSize } : {})
+        className: cn('flex-shrink-0', iconClassName),
+        size: iconSize
       })
     }
     
+    // Si c'est un composant de fonction (comme les icônes Lucide)
     if (typeof IconComponent === 'function') {
       const Icon = IconComponent as React.ComponentType<any>
       return <Icon className={cn('flex-shrink-0', iconClassName)} size={iconSize} />
     }
     
+    // Sinon, renvoyer tel quel
     return IconComponent
   }
   
@@ -251,7 +243,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
         }),
       }}
       onClick={handleClick}
-      onMouseEnter={onHover}
+      onMouseEnter={onMouseEnter}
       onFocus={onFocus}
       onBlur={onBlur}
       {...props}

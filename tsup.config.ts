@@ -7,5 +7,21 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', 'tailwindcss']
+  minify: true,
+  external: [
+    'react', 
+    'react-dom', 
+    'react/jsx-runtime',
+    'tailwindcss'
+  ],
+  esbuildOptions(options) {
+    options.jsx = 'automatic'
+    options.jsxImportSource = 'react'
+  },
+  banner: {
+    js: '"use client";',
+  },
+  treeshake: true,
+  target: 'es2018',
+  outDir: 'dist'
 })
